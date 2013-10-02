@@ -30,19 +30,6 @@
 #include <machine/cpu-features.h>
 #include <machine/asm.h>
 
-/*
- * These default settings are good for all Krait-based systems
- * as of this writing, but they can be overridden in:
- *   device/<vendor>/<board>/BoardConfig.mk
- * by setting the following:
- *   TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
- *   TARGET_USE_KRAIT_PLD_SET := true
- *   TARGET_KRAIT_BIONIC_PLDOFFS := <pldoffset>
- *   TARGET_KRAIT_BIONIC_PLDSIZE := <pldsize>
- *   TARGET_KRAIT_BIONIC_PLDTHRESH := <pldthreshold>
- *   TARGET_KRAIT_BIONIC_BBTHRESH := <bbthreshold>
- */
-
 #define PLDOFFS	(10)
 #define PLDTHRESH (PLDOFFS)
 #define BBTHRESH (4096/64)
