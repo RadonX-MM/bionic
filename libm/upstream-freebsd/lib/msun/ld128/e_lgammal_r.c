@@ -212,7 +212,7 @@ sin_pil(long double x)
 	    case 0:   y =  __kernel_sinl(pi*y,zero,0); break;
 	    case 1:
 	    case 2:   y =  __kernel_cosl(pi*(0.5-y),zero); break;
-	    case 3:
+	    case 3: 
 	    case 4:   y =  __kernel_sinl(pi*(one-y),zero,0); break;
 	    case 5:
 	    case 6:   y = -__kernel_cosl(pi*(y-1.5),zero); break;
@@ -269,6 +269,7 @@ lgammal_r(long double x, int *signgamp)
 		r = 0;
 	        if(x>=1.7316312789916992e+00) {y=2-x;i=0;}
 	        else if(x>=1.2316322326660156e+00) {y=x-tc;i=1;}
+
 		else {y=x-1;i=2;}
 	    }
 	    switch(i) {
@@ -279,14 +280,14 @@ lgammal_r(long double x, int *signgamp)
 		p2 = z*(a1+z*(a3+z*(a5+z*(a7+z*(a9+z*(a11+z*(a13+z*(a15+
 		    z*(a17+z*(a19+z*(a21+z*a23)))))))))));
 		p  = y*p1+p2;
-		r  += p-y/2; break;
+		r  += (p-y/2); break;
 	      case 1:
 		p = t0+y*t1+tt+y*y*(t2+y*(t3+y*(t4+y*(t5+y*(t6+y*(t7+y*(t8+
 		    y*(t9+y*(t10+y*(t11+y*(t12+y*(t13+y*(t14+y*(t15+y*(t16+
 		    y*(t17+y*(t18+y*(t19+y*(t20+y*(t21+y*(t22+y*(t23+
 		    y*(t24+y*(t25+y*(t26+y*(t27+y*(t28+y*(t29+y*(t30+
 		    y*(t31+y*t32))))))))))))))))))))))))))))));
-		r += tf + p; break;
+		r += (tf + p); break;
 	      case 2:
 		p1 = y*(u0+y*(u1+y*(u2+y*(u3+y*(u4+y*(u5+y*(u6+y*(u7+
 		    y*(u8+y*(u9+y*u10))))))))));
@@ -313,6 +314,7 @@ lgammal_r(long double x, int *signgamp)
 	    case 3: z *= (y+2);		/* FALLTHRU */
 		    r += logl(z); break;
 	    }
+
     /* 8.0 <= x < 2**(p+3) */
 	} else if (ix<0x3fff+116) {
 	    t = logl(x);
@@ -322,7 +324,6 @@ lgammal_r(long double x, int *signgamp)
 		y*(w9+y*(w10+y*(w11+y*(w12+y*(w13+y*(w14+y*(w15+y*(w16+
 		y*(w17+y*w18)))))))))))))))));
 	    r = (x-half)*(t-one)+w;
-    /* 2**(p+3) <= x <= inf */
 	} else 
 	    r =  x*(logl(x)-1);
 	if(hx&0x8000) r = nadj - r;
